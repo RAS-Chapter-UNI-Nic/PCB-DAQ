@@ -14131,6 +14131,39 @@ W = angled&lt;p&gt;
 </deviceset>
 </devicesets>
 </library>
+<library name="supply2">
+<description>&lt;b&gt;Supply Symbols&lt;/b&gt;&lt;p&gt;
+GND, VCC, 0V, +5V, -5V, etc.&lt;p&gt;
+Please keep in mind, that these devices are necessary for the
+automatic wiring of the supply signals.&lt;p&gt;
+The pin name defined in the symbol is identical to the net which is to be wired automatically.&lt;p&gt;
+In this library the device names are the same as the pin names of the symbols, therefore the correct signal names appear next to the supply symbols in the schematic.&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="VCC">
+<circle x="0" y="1.27" radius="1.27" width="0.254" layer="94"/>
+<text x="-1.905" y="3.175" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="VCC" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="VCC" prefix="SUPPLY">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="VCC" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -14184,6 +14217,10 @@ W = angled&lt;p&gt;
 <part name="JP2" library="pinhead" deviceset="PINHD-1X1" device=""/>
 <part name="." library="pinhead" deviceset="PINHD-1X2" device="" value="7 8"/>
 <part name="," library="pinhead" deviceset="PINHD-1X1" device=""/>
+<part name="SUPPLY1" library="supply2" deviceset="VCC" device="" value="X1"/>
+<part name="SUPPLY2" library="supply2" deviceset="VCC" device="" value="X2"/>
+<part name="SUPPLY3" library="supply2" deviceset="VCC" device="" value="X1"/>
+<part name="SUPPLY4" library="supply2" deviceset="VCC" device="" value="X2"/>
 </parts>
 <sheets>
 <sheet>
@@ -14235,6 +14272,10 @@ W = angled&lt;p&gt;
 <instance part="JP2" gate="G$1" x="15.24" y="5.08"/>
 <instance part="." gate="G$1" x="-12.7" y="38.1"/>
 <instance part="," gate="G$1" x="66.04" y="-12.7"/>
+<instance part="SUPPLY1" gate="G$1" x="76.2" y="101.6" rot="R270"/>
+<instance part="SUPPLY2" gate="G$1" x="78.74" y="86.36" rot="R270"/>
+<instance part="SUPPLY3" gate="G$1" x="15.24" y="35.56" rot="R90"/>
+<instance part="SUPPLY4" gate="G$1" x="20.32" y="33.02" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -14256,6 +14297,79 @@ W = angled&lt;p&gt;
 <segment>
 <pinref part="," gate="G$1" pin="1"/>
 <wire x1="66.04" y1="-12.7" x2="63.5" y2="-12.7" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="J1" gate="G$1" pin="3"/>
+<pinref part="C4" gate="G$1" pin="+"/>
+<wire x1="-38.1" y1="101.6" x2="-20.32" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="101.6" x2="-20.32" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="A1" pin="VO"/>
+<wire x1="-12.7" y1="101.6" x2="-20.32" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="J1" gate="G$1" pin="1"/>
+<wire x1="-38.1" y1="96.52" x2="-27.94" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="96.52" x2="-27.94" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="-"/>
+<wire x1="-27.94" y1="93.98" x2="-20.32" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="-20.32" y1="83.82" x2="-20.32" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND7" gate="1" pin="GND"/>
+<pinref part="IC2" gate="A1" pin="GND"/>
+<wire x1="-2.54" y1="88.9" x2="-2.54" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C1" gate="G$1" pin="1"/>
+<pinref part="GND1" gate="1" pin="GND"/>
+<wire x1="58.42" y1="101.6" x2="53.34" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="101.6" x2="53.34" y2="86.36" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="53.34" y1="86.36" x2="53.34" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="86.36" x2="53.34" y2="86.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="X1" class="0">
+<segment>
+<pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="Q1" gate="G$1" pin="1"/>
+<wire x1="66.04" y1="101.6" x2="68.58" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="101.6" x2="68.58" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="SUPPLY1" gate="G$1" pin="VCC"/>
+<wire x1="68.58" y1="101.6" x2="73.66" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="OSC1/CLKI"/>
+<pinref part="SUPPLY3" gate="G$1" pin="VCC"/>
+<wire x1="30.48" y1="35.56" x2="17.78" y2="35.56" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="X2" class="0">
+<segment>
+<pinref part="SUPPLY4" gate="G$1" pin="VCC"/>
+<pinref part="IC1" gate="G$1" pin="RA6/OSC2/CLKO"/>
+<wire x1="22.86" y1="33.02" x2="30.48" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="Q1" gate="G$1" pin="2"/>
+<wire x1="68.58" y1="88.9" x2="68.58" y2="86.36" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="68.58" y1="86.36" x2="66.04" y2="86.36" width="0.1524" layer="91"/>
+<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
+<wire x1="68.58" y1="86.36" x2="76.2" y2="86.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="IC2" gate="A1" pin="VI"/>
+<pinref part="C5" gate="G$1" pin="1"/>
+<wire x1="7.62" y1="101.6" x2="17.78" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="101.6" x2="17.78" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
